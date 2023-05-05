@@ -5,13 +5,7 @@ reg[3:0] first = 0, second = 0, third = 0, fourth = 0;
 reg[1:0] status = 1;
 
 always@ (posedge clk, posedge reset) begin
-	if(!reset) begin
-        first <= 0;
-        second <= 0;
-        third <= 0;
-        fourth <= 0;
-    end
-	else begin
+	if(reset) begin
 		if(stop)
 			status <= status + 1;
 		if(status > 1)
@@ -31,13 +25,22 @@ always@ (posedge clk, posedge reset) begin
 			second <= 0;
 			first <= first + 1;
 		end
-		if(first>6)
+		if(first>6) begin
 			first <= 0;
+			status <= status + 1;
+		end
+
+    end
+	else begin        
+		first <= 0;
+        second <= 0;
+        third <= 0;
+        fourth <= 0;
 	end
 end
 
 
-    NumDisplay Seg1(FisrtSegment,first);
+    NumDisplay Seg1(firstSegment,first);
     NumDisplay Seg2(secondSegment,second);
     NumDisplay Seg3(thirdSegment,third);
     NumDisplay Seg4(fourthSegment,fourth);
