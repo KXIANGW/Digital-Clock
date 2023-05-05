@@ -5,7 +5,7 @@ reg[3:0] first = 0, second = 0, third = 0, fourth = 0;
 reg[1:0] status = 1;
 
 always@ (posedge clk, posedge reset) begin
-	if(reset) begin
+	if(!reset) begin
         first <= 0;
         second <= 0;
         third <= 0;
@@ -23,7 +23,7 @@ always@ (posedge clk, posedge reset) begin
 			fourth <= 0;
 			third  <= third + 1; 
 		end
-		if(third>9) begin
+		if(third>6) begin
 			third <= 0;
 			second <= second + 1;
 		end
@@ -31,7 +31,7 @@ always@ (posedge clk, posedge reset) begin
 			second <= 0;
 			first <= first + 1;
 		end
-		if(first>9)
+		if(first>6)
 			first <= 0;
 	end
 end
