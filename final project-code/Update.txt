@@ -1,0 +1,5 @@
+所有module裡面的7-segement 我都把它換成 output wire， 好像是因為對MasterClock而言是把input進去之後我們設定的output=result所以output應該要是wire型別
+也就是說module化設計時 需要考慮他是module如果是那就應該使用wire
+在我們的設計中 所有的7-segement都是用NumDisplay完成所以應該用wire而不適reg
+
+5/19 done
